@@ -7,31 +7,21 @@ export interface Figure {
 export class Triangle implements Figure {
   shape: 'triangle' = 'triangle';
 
-  a: number;
-
-  b: number;
-
-  c: number;
-
-  color: 'red' | 'green' | 'blue';
-
   constructor(
-    color: 'red' | 'green' | 'blue',
-    a: number,
-    b: number,
-    c: number,
+    public color: 'red' | 'green' | 'blue',
+    public a: number,
+    public b: number,
+    public c: number,
   ) {
-    this.color = color;
-    this.a = a;
-    this.b = b;
-    this.c = c;
-
     if (a <= 0 || b <= 0 || c <= 0) {
       throw new Error('All sides must be positive numbers');
     }
 
     if (a >= b + c || b >= a + c || c >= a + b) {
-      throw new Error('your error message');
+      throw new Error(
+        'The longest side cannot be greater than or equal ' +
+          'to the sum of the other two sides',
+      );
     }
   }
 
@@ -46,14 +36,10 @@ export class Triangle implements Figure {
 export class Circle implements Figure {
   shape: 'circle' = 'circle';
 
-  color: 'red' | 'green' | 'blue';
-
-  radius: number;
-
-  constructor(color: 'red' | 'green' | 'blue', radius: number) {
-    this.color = color;
-    this.radius = radius;
-
+  constructor(
+    public color: 'red' | 'green' | 'blue',
+    public radius: number,
+  ) {
     if (radius <= 0) {
       throw new Error('Radius must be a positive number');
     }
@@ -69,17 +55,11 @@ export class Circle implements Figure {
 export class Rectangle implements Figure {
   shape: 'rectangle' = 'rectangle';
 
-  color: 'red' | 'green' | 'blue';
-
-  width: number;
-
-  height: number;
-
-  constructor(color: 'red' | 'green' | 'blue', width: number, height: number) {
-    this.color = color;
-    this.width = width;
-    this.height = height;
-
+  constructor(
+    public color: 'red' | 'green' | 'blue',
+    public width: number,
+    public height: number,
+  ) {
     if (width <= 0 || height <= 0) {
       throw new Error('Width and height must be positive numbers');
     }
